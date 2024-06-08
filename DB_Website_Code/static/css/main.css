@@ -1,0 +1,141 @@
+body
+{
+  background: #6eb0f8;
+}
+
+h1
+{
+  text-align: center;
+}
+
+ul
+{
+  position: relative;
+  padding: 5px 0;
+  background: #4058f3;
+  display: flex;
+  box-shadow: 0 5px 5px rgb(0,0,0,.2);
+}
+
+ul > li:last-child{
+    right:0;
+    position:absolute
+}
+
+ul li
+{
+  list-style: none;
+  text-align: center;
+  display: inline-block;
+  border-right: 1px solid rgba(0,0,0,0.2);
+}
+ul li:last-child
+{
+  border-right: none;
+}
+
+ul li a
+{
+  text-decoration: none;
+  padding: 0 50px;
+  display: block;
+}
+
+ul li a .icon
+{
+  width: 30px;
+  height: 35px;
+  text-align: center;
+  overflow: hidden;
+  margin: 0 auto 1px;
+}
+
+ul li a .icon .bi
+{
+  width: 100%;
+  height: 100%;
+  line-height: 40px;
+  font-size: 25px;
+  transition: 0.5s;
+  color: #000;
+}
+
+ul li a .icon .bi:last-child
+{
+  color: #e91e63;
+}
+
+ul li a:hover .icon .bi
+{
+  display: inline-block;
+  transform: translateY(-100%);
+}
+
+ul li a .name
+{
+  position: relative;
+  height: 20px;
+  width: 100%;
+  display: block;
+}
+ul li a .name span
+{
+  display: block;
+  position: relative;
+  color: #000;
+  font-size: 15px;
+  line-height: 20px;
+  transition: 0.5s;
+  overflow: hidden;
+}
+
+ul li a .name span:before
+{
+  content: attr(data-text);
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #e91e63;
+}
+
+ul li a:hover .name span:before
+{
+  transform: translateY(20px);
+}
+
+.btn-group {
+  margin: 10px;
+}
+
+
+
+#rcorners2 {
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+  padding: 5px;
+  width: 210px;
+  height: 100px;
+  text-align: center;}
+
+  .chartCard {
+        width: 100vw;
+        height: calc(60vh - 40px);
+        background: rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .chartBox {
+        width: 700px;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 20px;
+        border: solid 3px rgb(255, 255, 255);
+        background: white;
+      }
+      
+      .btn{
+        font-size: 12px;
+      }

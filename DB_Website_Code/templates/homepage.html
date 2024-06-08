@@ -1,0 +1,163 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %}
+{% block content %}
+<h1>Homepage</h1>
+<body>
+    <div class="row">
+        <div class="chartCard">
+            <div class="chartBox">
+                <canvas id="home_pm_bar"></canvas>
+                <script>
+                    var ctx = document.getElementById('home_pm_bar').getContext('2d')
+                        var barChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: [
+                                    {% for i in barData %}
+                                    "{{ i['Label']}}",
+                                    {% endfor %}
+                                ],
+                            datasets: [{
+                                label: 'PM2.5 Bar Chart',
+                                backgroundColor: 'rgb(255, 99, 132)',
+                                borderColor: 'rgb(255, 99, 132)',
+                                data: [
+                                {% for i in barData %}
+                                    "{{ i['Values']}}",
+                                {% endfor %}
+                            ],
+                            backgroundColor: [
+                                {% for color in barHomepageColors %}
+                                "{{color}}",
+                                {% endfor %}
+                            ],
+                            borderColor: [
+                                {% for color in barHomepageColors %}
+                                "{{color}}",
+                                {% endfor %}
+                            ],
+                            borderWidth: 1
+                            }]
+
+                        },
+                        options: { }
+                    });
+                </script>
+            </div>
+            <div class="chartBox">
+                <canvas id="myChart1"></canvas>
+                <script>
+                var ctxx = document.getElementById('myChart1').getContext('2d')
+                var chartBar = new Chart(ctxx, {
+                    type: 'bar',
+                    data: {
+                        labels: [
+                            {% for i in humidityBarData %}
+                            "{{ i['date']  }}",
+                            {% endfor %}
+                        ],
+                    datasets: [{
+                        label: 'Humidity Bar chart',
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: [
+                            {% for i in humidityBarData %}
+                            "{{ i['Values']}}",
+                            {% endfor %}
+                        ],
+                    }]
+                    },
+                    options: { }
+                });
+                </script>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="chartCard">
+            <div class="chartBox">
+                <canvas id="home_temp_bar"></canvas>
+                <script>
+                    var ctxx = document.getElementById('home_temp_bar').getContext('2d')
+                    var chartBar = new Chart(ctxx, {
+                        type: 'bar',
+                        data: {
+                            labels: [
+                                {% for i in temperatureBarData %}
+                                "{{ i['date'] }}",
+                                {% endfor %}
+                            ],
+                        datasets: [{
+                            label: 'Temperature Bar Chart',
+                            backgroundColor: 'rgb(255, 99, 132)',
+                            borderColor: 'rgb(255, 99, 132)',
+                            data: [
+                                {% for i in temperatureBarData %}
+                                "{{ i['Values']}}",
+                                {% endfor %}
+                            ],
+                        }]
+                        
+                        },
+                        options: { }
+                    });
+                </script>
+            </div>
+            <div class="chartBox">
+                <div class="row">
+                    <div>
+                        <div style="display: table-cell;background-color:blue   display: inline-block;
+                                    vertical-align: center;" > 
+                            <div id="rcorners2" style="margin-left: 30px; margin-right: 30px; margin-bottom: 30px; align-self: center;"> 
+                                <p style="font-size: 15px;">Temperature:</p>
+                                <p style="font-size: 30px;  color:#73AD21;">{{recent_temperature}}</p>
+                            </div> 
+                        </div>
+                        <div style="display: table-cell;background-color:blue   display: inline-block;
+                            vertical-align: center;" > 
+                            <div id="rcorners2"> 
+                                <p style="font-size: 15px;">Humidity:</p>
+                                <p style="font-size: 30px;  color:#73AD21;">{{recent_humidity}}</p>
+                            </div> 
+                        </div>
+                    </div>
+                </div> 
+                <div class="row">
+                    <div>
+                        <div style="display: table-cell;background-color:blue   display: inline-block;
+                            vertical-align: center;" > 
+                            <div id="rcorners2" style="margin-left: 30px; margin-right: 30px;"> 
+                                <p style="font-size: 15px;">Gas:</p>
+                                <p style="font-size: 30px;  color:#73AD21;">{{recent_gas}}</p>
+                            </div> 
+                        </div>
+                        <div style="display: table-cell;background-color:blue   display: inline-block;
+                            vertical-align: center;" > 
+                            <div id="rcorners2"> 
+                                <p style="font-size: 15px;">PM2.5 levels:</p>
+                                <p style="font-size: 30px;  color:#73AD21;">{{recent_pm}}</p>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                 {% if session['role'] == 'admin' %}
+                <div class="row">
+                    <form method = "post" action="/homepage">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <input type="submit" button type="button" class="btn btn-primary" value="On" name="on" style="margin-right: 2px";/>
+                            <input type="submit" button type="button" class="btn btn-primary" value="Off" name="off" style="margin-right: 10px"/>
+                            <input type="submit" button type="button" class="btn btn-primary" value="Light On" name="lightOn"
+                                style="margin-right: 2px" ; />
+                            <input type="submit" button type="button" class="btn btn-primary" value="Light Off" name="lightOff" style="margin-right: 10px"/>
+                            <input type="submit" button type="button" class="btn btn-primary" value="Increase Temp" name="increaseTemp"
+                                style="margin-right: 2px" ; />
+                            <input type="submit" button type="button" class="btn btn-primary" value="Decrease Temp" name="decreaseTemp" style="margin-right: 10px"/>
+                        </div>
+                    </form>
+                </div>
+                {% endif %}
+            </div>  
+        </div>
+    </div>
+</body>
+
+{% endblock %}

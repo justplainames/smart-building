@@ -1,0 +1,267 @@
+{% extends "base.html" %}
+{% block title %}PM/Gas{% endblock %}
+{% block content %}
+<h1>PM/Gas</h1>
+
+<body>
+    {% if session['role'] == "admin" %}
+    <div class="container">
+        <div class="col-md-3">
+            <br />
+            <form id="pm_chart_range_form">
+                <div class="form-group">
+                    <label>Select Range</label>
+                    <select name="pm_chart_range" id="pm_chart_range" class="form-control">
+                        <option value="Daily">Daily</option>
+                        <option value="Weekly">Weekly</option>
+                        <option value="Monthly">Monthly</option>
+                        <option value="Quarterly">Quarterly</option>
+                        <option value="Yearly">Yearly</option>
+                    </select>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input type="submit" name="Select" id="pm_chart_range_submit" class="btn btn-success" value="Select" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    <div class="row">
+            <div class="chartCard">
+                <div class="chartBox">
+                    <canvas id="myChart"></canvas>
+                    <script>
+                        var ctx = document.getElementById('myChart').getContext('2d')
+                            var chart = new Chart(ctx, {
+                                type: 'line',
+                                data: {
+                                    labels: [
+                                        {% for i in data %}
+                                        "{{ i['Label']}}",
+                                        {% endfor %}
+                                    ],
+                                datasets: [{
+                                    label: 'Line Chart',
+                                    backgroundColor: 'rgb(255, 99, 132)',
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    data: [
+                                        {% for i in data %}
+                                        "{{ i['Values']}}",
+                                        {% endfor %}
+                                    ],
+                                }],
+                                
+
+                                },
+                                options: { }
+                            });
+                    </script>
+                    </div>
+                    <div class="chartBox">
+                        <canvas id="myBar"></canvas>
+                        <script>
+                            var ctx = document.getElementById('myBar').getContext('2d')
+                            var barChart = new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: [
+                                        {% for i in barData %}
+                                                "{{ i['Label']}}",
+                                                {% endfor %}
+                                            ],
+                            datasets: [{
+                                label: 'Daily Bar Chart',
+                                backgroundColor: 'rgb(255, 99, 132)',
+                                borderColor: 'rgb(255, 99, 132)',
+                                data: [
+                                    {% for i in barData %}
+                                    "{{ i['Values']}}",
+                                    {% endfor %}
+                                ],
+                                backgroundColor: [
+                                    {% for color in colors %}
+                                    "{{color}}",
+                                    {% endfor %}
+                                ],
+                                borderColor: [
+                                    {% for color in colors %}
+                                    "{{color}}",
+                                    {% endfor %}
+                                ],
+                                borderWidth: 1
+                            }]
+                                
+                                        },
+                            options: { }
+                                    });
+
+                        </script>
+                    </div>
+                    
+                </div>
+            </div>
+    <div class="container">
+        <p><h1>Data</h1></p>
+        <div>
+            <table id='pm_gas_table' class='table table-striped' width="100%">
+                <thead>
+                    <tr>
+                        <th>Index</th>
+                        <th>DateTime</th>
+                        <th>Values</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    {% else %}
+    <div class="container">
+        <div class="col-md-3">
+            <br />
+            <form id="pm_chart_range_form">
+                <div class="form-group">
+                    <label>Select Range</label>
+                    <select name="pm_chart_range" id="pm_chart_range" class="form-control">
+                        <option value="Daily">Daily</option>
+                        <option value="Weekly">Weekly</option>
+                        <option value="Monthly">Monthly</option>
+                        <option value="Quarterly">Quarterly</option>
+                        <option value="Yearly">Yearly</option>
+                    </select>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input type="submit" name="Select" id="pm_chart_range_submit" class="btn btn-success" value="Select" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    <div class="row">
+            <div class="chartCard">
+                <div class="chartBox">
+                    <canvas id="myChart"></canvas>
+                    <script>
+                        var ctx = document.getElementById('myChart').getContext('2d')
+                            var chart = new Chart(ctx, {
+                                type: 'line',
+                                data: {
+                                    labels: [
+                                        {% for i in data %}
+                                        "{{ i['Label']}}",
+                                        {% endfor %}
+                                    ],
+                                datasets: [{
+                                    label: 'Line Chart',
+                                    backgroundColor: 'rgb(255, 99, 132)',
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    data: [
+                                        {% for i in data %}
+                                        "{{ i['Values']}}",
+                                        {% endfor %}
+                                    ],
+                                }],
+
+
+                                },
+                                options: { }
+                            });
+                    </script>
+                    </div>
+                    <div class="chartBox">
+                        <canvas id="myBar"></canvas>
+                        <script>
+                            var ctx = document.getElementById('myBar').getContext('2d')
+                            var barChart = new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: [
+                                        {% for i in barData %}
+                                                "{{ i['Label']}}",
+                                                {% endfor %}
+                                            ],
+                            datasets: [{
+                                label: 'Daily Bar Chart',
+                                backgroundColor: 'rgb(255, 99, 132)',
+                                borderColor: 'rgb(255, 99, 132)',
+                                data: [
+                                    {% for i in barData %}
+                                    "{{ i['Values']}}",
+                                    {% endfor %}
+                                ],
+                                backgroundColor: [
+                                    {% for color in colors %}
+                                    "{{color}}",
+                                    {% endfor %}
+                                ],
+                                borderColor: [
+                                    {% for color in colors %}
+                                    "{{color}}",
+                                    {% endfor %}
+                                ],
+                                borderWidth: 1
+                            }]
+
+                                        },
+                            options: { }
+                                    });
+
+                        </script>
+                    </div>
+
+                </div>
+            </div>
+    {% endif %}
+
+</body>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function () {
+        var pmGasDataTable = $('#pm_gas_table').DataTable({
+            "bDestroy": true,
+            'processing': true,
+            'serverSide': true,
+            'serverMethod': 'post',
+            'ajax':{
+                'url':'/pm_gas_table'
+            },
+            'lengthMenu': [[5,10,25,50, -1],[5,10,25,50,"All"]],
+            searching: true,
+            sort: false,
+            "serverSide": true,
+            'columns': [
+                { data: 'Id'},
+                { data: 'Time' },
+                { data: 'Value' },
+                { data: 'Location' },
+                { data: 'Status' },
+            ]
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#pm_chart_range_form').on('submit', function (event) {
+            chart.destroy()
+            var data = $('pm_chart_range').val();
+            event.preventDefault();
+            $.ajax({
+                url: "/retrieve_chart",
+                method: "POST",
+                data: $(this).serialize(),
+                success: function (data){
+                    $('#myChart').html(data);
+                    $('#myChart').append(data.htmlresponse);
+                }
+            });  
+        });
+    });  
+</script>
+
+{% endblock %}

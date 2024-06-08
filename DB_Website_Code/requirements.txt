@@ -1,0 +1,17 @@
+<<<<<<< HEAD
+Flask~=2.0.3
+=======
+Flask>=2.0.3
+Flask-Login>=0.5.0
+Flask-SQLAlchemy>=2.5.1
+Jinja2>=3.0.3
+MarkupSafe>=2.1.0
+SQLAlchemy>=1.4.31
+Werkzeug>=2.0.3
+click>=8.0.4
+itsdangerous>=2.1.0
+pip>=22.0.3
+setuptools>=60.9.3
+wheel>=0.37.1
+werkzeug >= 2.0.3
+>>>>>>> 85e7e99f7870b75f6774686b5aefbf0ee1c4078b
